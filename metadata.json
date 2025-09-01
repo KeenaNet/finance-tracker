@@ -1,0 +1,5 @@
+{
+  "name": "KeenaNet Finance Tracker",
+  "description": "A daily financial transaction and expense tracker that works offline and online. It's a Progressive Web App (PWA) designed for speed and multi-device synchronization.",
+  "requestFramePermissions": []
+}
