@@ -1,4 +1,4 @@
-const CACHE_NAME = 'keenanet-finance-tracker-v1.0.2';
+const CACHE_NAME = 'keenanet-finance-tracker-v1.1.0';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',

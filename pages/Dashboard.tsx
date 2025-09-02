@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
             <div className="bg-white dark:bg-dark-secondary p-4 sm:p-6 rounded-xl shadow-md">
                  <div className="flex justify-between items-center mb-4">
                     <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Transaksi Terakhir</h2>
-                    <Link to="/add" className="text-sm font-medium text-neon-blue hover:underline">
+                    <Link to="/transactions" className="text-sm font-medium text-neon-blue hover:underline">
                         Lihat Semua
                     </Link>
                 </div>

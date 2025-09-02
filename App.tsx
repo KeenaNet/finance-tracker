@@ -11,6 +11,7 @@ import Header from './components/layout/Header.tsx';
 import RecurringTransactions from './pages/RecurringTransactions.tsx';
 import AddOrEditRecurringTransaction from './pages/AddOrEditRecurringTransaction.tsx';
 import Icon from './components/common/Icon.tsx';
+import AllTransactions from './pages/AllTransactions.tsx';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
             <div className="container mx-auto p-4 max-w-4xl flex-grow">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
+                <Route path="/transactions" element={<AllTransactions />} />
                 <Route path="/add" element={<AddOrEditTransaction />} />
                 <Route path="/edit/:id" element={<AddOrEditTransaction />} />
                 <Route path="/reports" element={<Reports />} />
@@ -38,7 +40,7 @@ const App: React.FC = () => {
                         @keenanet_technetwork
                     </a>
                 </p>
-                <p className="mt-2 text-xs">Versi 1.0.2</p>
+                <p className="mt-2 text-xs">Versi 1.1.0</p>
             </footer>
           </main>
           <BottomNav />

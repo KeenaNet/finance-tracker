@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext.tsx';
 import Icon from '../components/common/Icon.tsx';
@@ -22,6 +22,19 @@ const Settings: React.FC = () => {
     const [newCategoryIcon, setNewCategoryIcon] = useState('🛍️');
     const [newCategoryColor, setNewCategoryColor] = useState('#FF9B9B');
 
+    const incomeCategories = useMemo(() =>
+        categories
+            .filter(c => c.type === 'income')
+            .sort((a, b) => a.name.localeCompare(b.name)),
+        [categories]
+    );
+
+    const expenseCategories = useMemo(() =>
+        categories
+            .filter(c => c.type === 'expense')
+            .sort((a, b) => a.name.localeCompare(b.name)),
+        [categories]
+    );
 
     const handleAddCategory = (e: React.FormEvent) => {
         e.preventDefault();
@@ -157,24 +170,57 @@ const Settings: React.FC = () => {
                     )}
                 </div>
 
-                <div className="max-h-60 overflow-y-auto space-y-2">
-                    {categories.map(cat => (
-                        <div key={cat.id} className="flex items-center justify-between p-2 bg-gray-100 dark:bg-dark-accent rounded">
-                            <div className="flex items-center gap-3">
-                               <div className="w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ backgroundColor: cat.color }}>
-                                    {cat.icon}
-                                </div>
-                                <span>{cat.name}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${cat.type === 'income' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'}`}>{cat.type}</span>
-                                <button onClick={() => handleDeleteCategory(cat.id)} className="text-gray-400 hover:text-red-500" aria-label={`Delete ${cat.name} category`}>
-                                    <Icon name="delete" className="w-4 h-4" />
-                                </button>
-                            </div>
+                <div className="max-h-72 overflow-y-auto space-y-4">
+                    <div>
+                        <h4 className="text-md font-semibold text-gray-600 dark:text-gray-300 mb-2 border-b border-gray-200 dark:border-dark-accent pb-1">Kategori Pemasukan</h4>
+                        <div className="space-y-2 pt-2">
+                            {incomeCategories.length > 0 ? (
+                                incomeCategories.map(cat => (
+                                    <div key={cat.id} className="flex items-center justify-between p-2 bg-gray-100 dark:bg-dark-accent rounded">
+                                        <div className="flex items-center gap-3">
+                                           <div className="w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ backgroundColor: cat.color }}>
+                                                {cat.icon}
+                                            </div>
+                                            <span>{cat.name}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <button onClick={() => handleDeleteCategory(cat.id)} className="text-gray-400 hover:text-red-500" aria-label={`Delete ${cat.name} category`}>
+                                                <Icon name="delete" className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p className="text-sm text-gray-500 dark:text-gray-400 px-2">Belum ada kategori pemasukan.</p>
+                            )}
                         </div>
-                    ))}
+                    </div>
+                    <div>
+                        <h4 className="text-md font-semibold text-gray-600 dark:text-gray-300 mb-2 border-b border-gray-200 dark:border-dark-accent pb-1">Kategori Pengeluaran</h4>
+                        <div className="space-y-2 pt-2">
+                             {expenseCategories.length > 0 ? (
+                                expenseCategories.map(cat => (
+                                    <div key={cat.id} className="flex items-center justify-between p-2 bg-gray-100 dark:bg-dark-accent rounded">
+                                        <div className="flex items-center gap-3">
+                                           <div className="w-8 h-8 rounded-full flex items-center justify-center text-lg" style={{ backgroundColor: cat.color }}>
+                                                {cat.icon}
+                                            </div>
+                                            <span>{cat.name}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <button onClick={() => handleDeleteCategory(cat.id)} className="text-gray-400 hover:text-red-500" aria-label={`Delete ${cat.name} category`}>
+                                                <Icon name="delete" className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))
+                             ) : (
+                                <p className="text-sm text-gray-500 dark:text-gray-400 px-2">Belum ada kategori pengeluaran.</p>
+                             )}
+                        </div>
+                    </div>
                 </div>
+
                  <style>{`
                     .form-input {
                         display: block;
