@@ -40,7 +40,7 @@ const App: React.FC = () => {
                         @keenanet_technetwork
                     </a>
                 </p>
-                <p className="mt-2 text-xs">Versi 1.1.0</p>
+                <p className="mt-2 text-xs">Versi 1.1.1</p>
             </footer>
           </main>
           <BottomNav />
